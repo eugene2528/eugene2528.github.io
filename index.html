@@ -1,19 +1,32 @@
 ---
-layout: default
+layout: blog-layout
 use_math: true
 ---
 
 <div class="posts">
   {% for post in site.posts %}
     <article class="post">
-
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }} - {{ post.date | date: "%B %e, %Y" }}</a></h1>
-
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
+			<header>
+				<div class="title">
+					<h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+				</div>
+				<div class="meta">
+					<time class="published" datetime='{{ post.date | date: "%Y-%B-%e" }}'>{{ post.date | date: "%B %e, %Y" }}</time>
+					<!--<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>-->
+				</div>
+			</header>
+			{% if post.main-post %}<a href="#" class="image featured"><img src="{{ post.main-image }}" alt="" /></a>{% endif %}
+			<p>{{ post.excerpt }}</p>
+			<footer>
+				<ul class="actions">
+					<li><a href="{{ site.baseurl }}{{ post.url }}" class="button medium">Continue Reading</a></li>
+				</ul>
+				<ul class="stats">
+					<li><a href="#">{{ post.tags }}</a></li>
+					<!--<li><a href="#" class="icon fa-heart">28</a></li>
+					<li><a href="#" class="icon fa-comment">128</a></li>-->
+				</ul>
+			</footer>
+		</article>
   {% endfor %}
 </div>

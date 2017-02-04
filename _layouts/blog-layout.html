@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+
+    {% include meta.html %}
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+
+    {% if page.use_math %}
+      {% include mathjax_support.html %}
+    {% endif %}
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="#">About</a></li>
+								<li><a href="#">Articles</a></li>
+								<li><a href="#">Presentations</a></li>
+								<!--
+								<li><a href="#">Publications</a></li>
+								<li><a href="#">Adipiscing</a></li>
+								-->
+							</ul>
+						</nav>
+						<!--
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+						-->
+					</header>
+        
+					
+				<!-- Main -->
+					<div id="main">
+            {{ content }}
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+							<section id="intro">
+								<a href="{{ site.baseurl }}/" class="logo"><img src="{{ site.avatar }}" alt="" /></a>
+								<header>
+									<h2>{{ site.name }}</h2>
+									<p>{{ site.description }}</a></p>
+								</header>
+							</section>
+
+						<!-- Mini Posts -->
+							<section>
+								<div class="mini-posts">
+
+									<!-- Mini Post -->
+									{% for post in site.posts limit:3 %}
+										<article class="mini-post">
+											<header>
+												<h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
+												<time class="published" datetime='{{ post.date | date: "%Y-%B-%e" }}'>{{ post.date | date: "%B %e, %Y" }}</time>
+												<!--<a href="{{ site.baseurl }}/{{ post.url }}" class="author"><img src="images/avatar.jpg" alt="" /></a>-->
+											</header>
+											<a href="{{ site.baseurl }}{{ post.url }}" class="image"><img src="{{ site.baseurl }}/assets/post-images/{% if post.image %}{{ post.image }}{% else %}+default.jpg{% endif %}" alt="" /></a>
+										</article>
+									{% endfor %}
+
+								</div>
+							</section>
+
+						<!-- Posts List -->
+							<section>
+								<ul class="posts">
+									{% for post in site.posts limit:9 %}
+										{% if post.index > 4 %}
+										<li>
+											<article>
+												<header>
+													<h3><a href="#">Lorem ipsum fermentum ut nisl vitae</a></h3>
+													<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												</header>
+												<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											</article>
+										</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							</section>
+
+						<!-- About -->
+							<section class="blurb">
+								<h2>About</h2>
+								<p>{{ site.short-bio }}</p>
+								<ul class="actions">
+									<li><a href="{{ site.baseurl }}/about" class="button">Learn More</a></li>
+								</ul>
+							</section>
+
+						<!-- Footer -->
+							<section id="footer">
+								<ul class="icons">
+									{% include svg-icons-blog.html %}
+								</ul>
+								<p class="copyright">&copy; Untitled. Crafted: <a href="http://designscrazed.org/">HTML5</a>.</p>
+							</section>
+
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{{ site.baseurl }}/scripts/jquery.min.js"></script>
+			<script src="{{ site.baseurl }}/scripts/skel.min.js"></script>
+			<script src="{{ site.baseurl }}/scripts/util.js"></script>
+			<!--[if lte IE 8]><script src="{{ site.baseurl }}/scripts/ie/respond.min.js"></script><![endif]-->
+			<script src="{{ site.baseurl }}/scripts/main.js"></script>
+
+    {% include analytics.html %}
+  </body>
+</html>
