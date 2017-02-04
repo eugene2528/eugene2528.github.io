@@ -1,6 +1,6 @@
 ---
 layout: post
-title: You're up and running22222222!
+title: You're up B
 use_math: true
 ---
 Test~~
