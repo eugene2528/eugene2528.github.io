@@ -6,11 +6,13 @@
 name: Eugene Yang
 
 # Short bio or description (displayed in the header)
-description: Ph.D Student In Georgetown University
-short-bio: Testtesttest~~~~~
+description: My blog about recent works
+short-bio: This blog would mostly about some research and technical notes I am working on recently. These articles would mainly in Chinese and English.
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: http://1.gravatar.com/userimage/15302823/4a2d29d7fd9e45c547c6c0c4eda078cc?size=500
+
+default-post-image: +statistics.png
 
 #
 # Flags below are optional

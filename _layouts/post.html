@@ -4,16 +4,31 @@ layout: blog-layout
 
 <article class="post">
     <header>
+      {% if page.image %}
+        <div class="bg"><img src="{{ site.baseurl }}/assets/post-images/{{ page.image }}"></div>
+      {% endif %}
       <div class="title">
-        <h3><a href="#">{{ page.title }}</a></h3>
+        <h2><a href="#">{{ page.title }}</a></h2>
       </div>
-      <div class="meta">
-        <time class="published" datetime=datetime='{{ post.date | date: "%Y-%B-%e" }}'>{{ post.date | date: "%B %e, %Y" }}</time>
-        <!--<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>-->
-      </div>
+      
     </header>
 
    {{ content }}
+
+   <footer>
+      <ul class="actions">
+        <li><i>Posted at {{ page.date | date: "%B %e, %Y" }}</i></li>
+      </ul>
+      <ul class="stats">
+        <li>
+          {% for tag in page.tags %}
+            &nbsp;<a href="{{ site.baseurl }}/tags/#{{ tag }}">{{ tag }}</a>
+          {% endfor %}
+        </li>
+        <!--<li><a href="#" class="icon fa-heart">28</a></li>
+        <li><a href="#" class="icon fa-comment">128</a></li>-->
+      </ul>
+    </footer>
       
    {% include disqus.html %}
   </article>

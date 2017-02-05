@@ -30,10 +30,11 @@
 						<h1><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
 						<nav class="links">
 							<ul>
+								<!--
 								<li><a href="#">About</a></li>
 								<li><a href="#">Articles</a></li>
 								<li><a href="#">Presentations</a></li>
-								<!--
+								
 								<li><a href="#">Publications</a></li>
 								<li><a href="#">Adipiscing</a></li>
 								-->
@@ -86,7 +87,7 @@
 												<time class="published" datetime='{{ post.date | date: "%Y-%B-%e" }}'>{{ post.date | date: "%B %e, %Y" }}</time>
 												<!--<a href="{{ site.baseurl }}/{{ post.url }}" class="author"><img src="images/avatar.jpg" alt="" /></a>-->
 											</header>
-											<a href="{{ site.baseurl }}{{ post.url }}" class="image"><img src="{{ site.baseurl }}/assets/post-images/{% if post.image %}{{ post.image }}{% else %}+default.jpg{% endif %}" alt="" /></a>
+											<a href="{{ site.baseurl }}{{ post.url }}" class="image"><img src="{{ site.baseurl }}/assets/post-images/{% if post.image %}{{ post.image }}{% else %}{{ site.default-post-image }}{% endif %}" alt="" /></a>
 										</article>
 									{% endfor %}
 
@@ -94,21 +95,23 @@
 							</section>
 
 						<!-- Posts List -->
+						{% if site.posts.size > 3 %}
 							<section>
 								<ul class="posts">
 									{% for post in site.posts offset:3 limit:5 %}
 										<li>
 											<article>
 												<header>
-													<h3><a href="#">{{ post.title }}</a></h3>
-													<time class="published" datetime="2015-10-20">October 20, 2015</time>
+													<h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
+													<time class="published" datetime='{{ post.date | date: "%Y-%B-%e" }}'>{{ post.date | date: "%B %e, %Y" }}</time>
 												</header>
-												<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+												<a href="{{ site.baseurl }}{{ post.url }}" class="image"><img src="{{ site.baseurl }}/assets/post-images/{% if post.image %}{{ post.image }}{% else %}{{ site.default-post-image }}{% endif %}" alt="" /></a>
 											</article>
 										</li>
 									{% endfor %}
 								</ul>
 							</section>
+						{% endif %}
 
 						<!-- About -->
 							<section class="blurb">
