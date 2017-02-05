@@ -19,6 +19,6 @@ I'm also a web engineer, always like to reinvent my own wheels(packages).
 
 ### Contact Information
 
-[email@domain.com](mailto:eugene2528@gmail.com)
+[eugene2528 at gmail dot com](mailto:eugene2528@gmail.com)
 
-![_config.yml]({{ site.baseurl }}/assets/post-images/+GU.jpg)
+![Georgetown University]({{ site.baseurl }}/assets/post-images/+GU.jpg)
