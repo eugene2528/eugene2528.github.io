@@ -10,9 +10,18 @@
     <meta name="description" content="{{ site.description }}">
     <meta property="og:description" content="{{ site.description }}" />
     {% endif %}
+    <meta property="og:url" content="{{ site.baseurl }}{{ page.url }}" />
     <meta name="author" content="{{ site.name }}" />
 
     {% if page.title %}
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="twitter:title" content="{{ page.title }}" />
+    {% endif %}
+
+    {% if page.image %}
+    <meta property="og:image" content="{{ site.baseurl }}/assets/post-images/{{ page.image }}" />
+    <meta property="twitter:image" content="{{ site.baseurl }}/assets/post-images/{{ page.image }}" />
+    {% else %}
+    <meta property="og:image" content="{{ site.baseurl }}/assets/post-images/{{ site.default-post-image }}" />
+    <meta property="twitter:image" content="{{ site.baseurl }}/assets/post-images/{{ site.default-post-image }}" />
     {% endif %}
