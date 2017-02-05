@@ -177,7 +177,7 @@
 					@include vendor('display', 'flex');
 					@include vendor('justify-content', 'center');
 					border-left: 0;
-					margin: 0 0 _size(element-margin) 0;
+					margin: 0 0 _size(element-margin) * 0.5 0;
 					padding-top: 0;
 					padding: 0;
 					text-align: left;
