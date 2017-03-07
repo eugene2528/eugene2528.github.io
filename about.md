@@ -3,7 +3,6 @@ layout: post
 title: About
 permalink: /about/
 date: 2017-02-04
-comments: false
 ---
 
 This blog would mostly about some research and technical notes I am working on recently.
