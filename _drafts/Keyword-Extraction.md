@@ -36,25 +36,55 @@ comments: true
 
 好，來到方法。我自己認為可以將這些方法從概念上放到光譜上，左右分別是：Syntax-based 及 Semantic-based。我們可以在不了解文字意義下試圖尋找關鍵字，也可以從語意上出發，當然也有方法是介於兩者之間的。
 
+再下來介紹的方法，都會介於 Syntax 和 Semantics 之間。這也是為什麼前面會先花點時間介紹這些層次的原因。
+
 這些方法的前提都是：**你有很多資料可以拿來當作 training data**。
 
 ## Co-occurance Method
 
-這類型的方法主要用到 TF-iDF 的觀念。由於我超級懶，不想要再認真寫他的內容，所以勒直接引用[好友大維的文章](https://taweihuang.hpd.io/2017/03/01/tfidf/)。值得多加一提的是，我們在建立這些 term 或是更廣義的說是 token 時，不只可以用 Bag of Word 也可以用 Bag of N-gram 或是用特殊的 Name Entity Tagger。
+這類的方法時常有人會再區分出更基本的 Frequency-based Methods ，但是我覺得基本的概念其實是相同的。**如果這些字詞只頻繁的出現在這篇文章中，那這些字詞大概就是關鍵字了。**關於這種討論字詞出現頻率的的方法，就非 TF-iDF 莫屬了。~~由於我超級懶~~，不想要再認真寫他的內容，所以勒直接引用[好友大維的文章](https://taweihuang.hpd.io/2017/03/01/tfidf/)。
 
-所謂的 word n-gram 就是無腦的移動框框來建立可能的片語。舉例而言： New York is one of the biggest city in the United States。所謂的 2-gram 就會是 New York, York is, is one, one of, of the, the biggest, biggest city, city in, in  the, the United, United State 這麼多項。我們想要的片語包含在這些可能的片語當中，例如 New York, United States。我們可以透過 TF-iDF 來找出分數高的 2-gram，進而刪掉那些沒用的。
+然而，在這個狀況下，我們目的不是要比較兩個 document 相似的程度，而是想要找到特別的字詞或是廣義地稱為 tokens 。**我們會盡量把我們認為有可能是關鍵字的字詞包裹成 token** ，因此會用更多種類的 tokenizer 或是刪掉不太可能是關鍵字的字詞，例如 stop-word filter 。 我們不只可以用 Bag of Word ，也可以用 Bag of N-gram 或是用特殊的 Named Entity Tagger。
 
-詳細的方法可以參照[這篇 Brain Lott 的 Servey Paper](http://www.cs.unm.edu/~pdevineni/papers/Lott.pdf) 。
+所謂的 word n-gram 就是無腦的移動框框來建立可能的片語。舉例而言
 
-單純的使用 TF-iDF ，我們可以選取分數高的 token 當作我們要找的 keywords 。稍微複雜一點的方法，我們可以進一步利用 Topic Modeling 來幫忙。
+> New York is one of the biggest city in the United States
+
+所謂的 2-gram 就會是 `New York`, `York is`, `is one`, `one of`, `of the`, `the biggest`, `biggest city`, `city in`, `in the`, `the United`, `United State` 這麼多項。我們想要的片語包含在這些可能的片語當中，例如 New York, United States。我們可以透過 TF-iDF 來找出分數高的 2-gram，進而刪掉那些沒用的。
+
+所謂 Named Entity 就是一些預先知道的專有名詞，通常是人名、國名、公司名等等。 Named Entity Tagger 有許多開源的工具可以使用。經典的算是 [Stanford Named Entity Recognizer](https://nlp.stanford.edu/software/CRF-NER.shtml) 還有 [Illinois Named Entity Tagger](https://cogcomp.cs.illinois.edu/page/software_view/NETagger) 。 使用 python 的人也可以使用 NLP 的經典工具 [Natural Language Toolkit(NLTK)](http://www.nltk.org/index.html) ，裡面的也包含了 Stanford NER 的 [python interface](http://www.nltk.org/api/nltk.tag.html#module-nltk.tag.stanford) 。
+
+特定的領域也可以用一些特定的專有名詞字典，可以大大增加找到關鍵字的機率。類似醫學領域可以使用 ULMS 來對應醫學專有名詞，附上[我學長做的快速查詢工具](https://github.com/lucasoldaini/QuickUMLS-client-server)。
+
+這類方法可以詳見[這篇 Brain Lott 的 Servey Paper](http://www.cs.unm.edu/~pdevineni/papers/Lott.pdf) 。
+
+單純的使用 TF-iDF ，我們可以選取分數高的 token 當作我們要找的 keywords ，但是並沒有了解任何語意上的內容。稍微複雜一點的方法，我們可以進一步利用 Topic Modeling 來幫忙。
 
 ## Topic Modeling
 
-我們可以利用
+Topic Model 最有名的作法應該算是 Latent Dirichlet Allocation 。他的概念基本上是將 document 中的 token 根據 co-occurance 藉由 Singular Value Decomposition 來做 document clustering 。噴了這麼多專有名詞，你一定會說：**這哪裡來的語意！！還不是在那邊用 co-occurance ！！**
+
+概念上我們可以這麼使用 Topic Modeling：我們可以在每個 topic group 和別人區別最大的 token 當作組內 document 的關鍵字。進一步，在每個組內再使用其他方法來尋找更細緻的關鍵字。
+
+這樣的做法可以找到有階層 hierachial 的關鍵字。尤其在跨領域的文件中，要單純用出現頻率來尋找關鍵字會面對不同領域文件數量不同來干擾 document frequency 的問題，因為某個領域的文件比較多所以他的詞被誤認為不重要的字(inverted document frequency 比較低)。用這樣的方法可以使得這種干擾的狀況變得比較小。
+
+![Topic Modeling Concept](http://journalofdigitalhumanities.org/wp-content/uploads/2013/02/blei_lda_illustration.png)
+
+*圖片擷取自 Rhody, Lisa. "[Topic modeling and figurative language](http://journalofdigitalhumanities.org/2-1/topic-modeling-and-figurative-language-by-lisa-m-rhody/)." Journal of Digital Humanities 2.1 (2012): 19-35.*
+
+這張圖堪稱 Topic Modeling 最直覺也最好懂的圖了。左邊的 Topic 就可以找出每個組內排行最高的幾個字，這就會是他們的關鍵字。
+
+![LDA](https://image.slidesharecdn.com/ehomdiz-110824154957-phpapp02/95/probabilistic-topic-models-25-728.jpg?cb=1314201365)
+
+*圖片擷取自 David Blei 的[投影片](https://www.slideshare.net/hustwj/probabilistic-topic-models)*
+
+
 
 ## Lexical Chains
 
 ## Semantic Representation Graph
 
 cite https://cs.stanford.edu/people/jure/pubs/nlpspo-msrtr05.pdf
+
+# Conclusion
 

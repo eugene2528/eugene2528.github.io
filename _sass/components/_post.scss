@@ -116,8 +116,26 @@
 		h1 {
 			display: block;
 			margin-top: 25px;
+			letter-spacing: 0.2em;
 			padding-bottom: 2px;
 			border-bottom: 2px #CCCCCC solid;
+		}
+
+		h2, h3, h4, h5, h6 {
+			letter-spacing: 0.1em;
+		}
+
+		p {
+			text-align: justify;
+			code {
+				white-space: nowrap;
+			}
+		}
+		blockquote {
+			margin: 0 0 1em 0;
+			p {
+				margin: 0;
+			}
 		}
 
 		> footer {
