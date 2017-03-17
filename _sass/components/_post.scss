@@ -78,7 +78,8 @@
 					position: absolute;
 					min-height: 100%;
 					top: 50%;
-					transform: translate(0, -50%)
+					transform: translate(0, -50%);
+					margin: 0;
 				}
 				&::after {
 					position: absolute;
@@ -105,10 +106,18 @@
 			}
 		}
 
-		img {
+		img{
 			max-width: 100%;
 			height: auto;
+			display: block;
+			margin: 40px auto;
+		}
 
+		h1 {
+			display: block;
+			margin-top: 25px;
+			padding-bottom: 2px;
+			border-bottom: 4px #555555 solid;
 		}
 
 		> footer {
