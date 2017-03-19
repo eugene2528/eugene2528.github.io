@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Keyword Extraction
+title: Keyword Extraction(1)
 tags: []
 image: +search.png
 comments: true
@@ -38,6 +38,8 @@ comments: true
 
 再下來介紹的方法，都會介於 Syntax 和 Semantics 之間。這也是為什麼前面會先花點時間介紹這些層次的原因。
 
+由於我想要介紹的方法大概介於個光譜的左右兩邊，所以我就乾脆拆成上下兩集來寫，~~希望下集不要難產(跪~~
+
 這些方法的前提都是：**你有很多資料可以拿來當作 training data**。
 
 ## Co-occurance Method
@@ -64,7 +66,9 @@ comments: true
 
 Topic Model 最有名的作法應該算是 Latent Dirichlet Allocation 。他的概念基本上是將 document 中的 token 根據 co-occurance 藉由 Singular Value Decomposition 來做 document clustering 。噴了這麼多專有名詞，你一定會說：**這哪裡來的語意！！還不是在那邊用 co-occurance ！！**
 
-概念上我們可以這麼使用 Topic Modeling：我們可以在每個 topic group 和別人區別最大的 token 當作組內 document 的關鍵字。進一步，在每個組內再使用其他方法來尋找更細緻的關鍵字。
+別急ＸＤ，讓我解釋一下。就我對 Topic Modeling 的理解，這是一個試圖利用 co-occurance 或是字詞統計來了解語意的方法，是個介於 syntax-based 和 semantic-based 之間的方法。一個有名的語言學直覺：**如果兩個字出現在類似的前後文中，他們會有大約相同的意思 (similar words would appear in similar context) **。同樣的，反過來說基本上也是符合直覺，有著類似文字的文章，他們大概也會有類似的意思。
+
+概念上我們可以這麼使用 Topic Modeling：**我們可以在每個 topic group 和別人區別最大的 token 當作組內 document 的關鍵字。進一步，在每個組內再使用其他方法來尋找更細緻的關鍵字。**
 
 這樣的做法可以找到有階層 hierachial 的關鍵字。尤其在跨領域的文件中，要單純用出現頻率來尋找關鍵字會面對不同領域文件數量不同來干擾 document frequency 的問題，因為某個領域的文件比較多所以他的詞被誤認為不重要的字(inverted document frequency 比較低)。用這樣的方法可以使得這種干擾的狀況變得比較小。
 
@@ -72,19 +76,21 @@ Topic Model 最有名的作法應該算是 Latent Dirichlet Allocation 。他的
 
 *圖片擷取自 Rhody, Lisa. "[Topic modeling and figurative language](http://journalofdigitalhumanities.org/2-1/topic-modeling-and-figurative-language-by-lisa-m-rhody/)." Journal of Digital Humanities 2.1 (2012): 19-35.*
 
-這張圖堪稱 Topic Modeling 最直覺也最好懂的圖了。左邊的 Topic 就可以找出每個組內排行最高的幾個字，這就會是他們的關鍵字。
+這張圖堪稱 Topic Modeling 最直覺也最好懂的圖了。右邊表達了各個 token 的詞頻和一起出現的機率，左邊的 Topic 就可以找出每個組內排行最高的幾個字，這就會是他們的關鍵字。而下面這張圖是 LDA 理論大概大家最愛引用的圖，這是來自於 Deep Learning, Computational Lingustic 大師 David Blei 的投影片。 
 
 ![LDA](https://image.slidesharecdn.com/ehomdiz-110824154957-phpapp02/95/probabilistic-topic-models-25-728.jpg?cb=1314201365)
 
 *圖片擷取自 David Blei 的[投影片](https://www.slideshare.net/hustwj/probabilistic-topic-models)*
 
+LDA 是一個 inference algorithm，他試圖要估計隱藏的結構。這個模型的假設是這樣的，**假設每個 topic 都是一個文字分佈( distribution over lexicons )、每個文件會由多個 topic 所生成的、而每個字則是最後可以觀測到的顯性變數。整個結構都是 latent variable 等著我們來 learn。**
 
+我們可以將每個結構都參數化並對參數做估計。估計的方法就不細講了，假設分佈在我們需要的點是否可微分會影響我們使用怎樣的估計方法。
 
-## Lexical Chains
+## Sloppy Conclusion
 
-## Semantic Representation Graph
+以上這些方法，大約就是常見的幾個透過 word co-occurance 衍生出來的方法了。
 
-cite https://cs.stanford.edu/people/jure/pubs/nlpspo-msrtr05.pdf
+這些方法其實非常強大，他不需要透過外部的資訊來幫助我們尋找關鍵字，只要你有夠多的資料就可以有不錯的成果。當然，我覺得對於應用的方法應該永遠有個直覺：**沒有一個方法可以完全打天下，在適當的時機要做適當的調整才能得到最好的結果。**
 
-# Conclusion
+以上的這些方法在你知道你正在處理什麼樣的資料的時候，都可以有些相對應的特化。別期待所有東西都可以用 out-of-the-box ，這些充其量只是作為生成 baseline 的工具。好好瞭解 domain knowledge 才是處理資料最重要的事情。
 
