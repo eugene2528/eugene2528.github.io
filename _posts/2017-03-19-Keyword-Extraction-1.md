@@ -66,7 +66,7 @@ comments: true
 
 Topic Model 最有名的作法應該算是 Latent Dirichlet Allocation 。他的概念基本上是將 document 中的 token 根據 co-occurance 藉由 Singular Value Decomposition 來做 document clustering 。噴了這麼多專有名詞，你一定會說：**這哪裡來的語意！！還不是在那邊用 co-occurance ！！**
 
-別急ＸＤ，讓我解釋一下。就我對 Topic Modeling 的理解，這是一個試圖利用 co-occurance 或是字詞統計來了解語意的方法，是個介於 syntax-based 和 semantic-based 之間的方法。一個有名的語言學直覺：**如果兩個字出現在類似的前後文中，他們會有大約相同的意思 (similar words would appear in similar context) **。同樣的，反過來說基本上也是符合直覺，有著類似文字的文章，他們大概也會有類似的意思。
+別急ＸＤ，讓我解釋一下。就我對 Topic Modeling 的理解，這是一個試圖利用 co-occurance 或是字詞統計來了解語意的方法，是個介於 syntax-based 和 semantic-based 之間的方法。一個有名的語言學直覺：**如果兩個字出現在類似的前後文中，他們會有大約相同的意思 (similar words would appear in similar context)**。同樣的，反過來說基本上也是符合直覺，有著類似文字的文章，他們大概也會有類似的意思。
 
 概念上我們可以這麼使用 Topic Modeling：**我們可以在每個 topic group 和別人區別最大的 token 當作組內 document 的關鍵字。進一步，在每個組內再使用其他方法來尋找更細緻的關鍵字。**
 
