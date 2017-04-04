@@ -2,7 +2,7 @@
 layout: post
 title: Temporal Graph Pattern Mining
 tags: []
-image: +search.png
+image: +statistics.png
 comments: true
 ---
 這是我在課堂上報告 paper 的投影片，想說最近完全沒有貼文還是來刷一下存在感好了嘿嘿。
