@@ -1,16 +1,18 @@
 ---
 layout: post
 title: 初衷─離開是為了回來
-tags: ['research']
-image: +statistics.png
+tags: 
+image: +GU.jpg
 comments: true
 ---
 
-*正式踏入研究工作約莫一年了。原本想說這個部落格就寫一些很技術宅的文章，目的讓別人看不懂我到底在寫什麼(笑)。然而去年底到今年初在幫一位非常要好的朋友修SOP的過程中，不斷要他把目的把想法把初衷想清楚，同時也讓我重新對我自己下定決心讀博士還有下定決心走入資工的領域有更多的認識。既然不會再寫一次SOP，那就寫篇文章來記錄這些想法好了。*
+*因為從 DC 飛到成田的飛機上不想睡又有點太無聊，所以決定拿來寫寫文章 :P*
+
+正式踏入研究工作約莫一年了。原本想說這個部落格就寫一些很技術宅的文章，目的讓別人看不懂我到底在寫什麼(笑)。然而去年底到今年初在幫一位非常要好的朋友修SOP的過程中，不斷要他把目的把想法把初衷想清楚，同時也讓我重新對我自己下定決心讀博士還有下定決心走入資工的領域有更多的認識。既然不會再寫一次SOP，那就寫篇文章來記錄這些想法好了。*
 
 ### 踏入研究的領域
 
-在 Georgetown CS 的這一年，系上安排很多學術演講，有幾位學者讓我印象深刻。(Find the one saying it) 在討論 gun control 時說的這句話讓我很難忘記：
+在 Georgetown CS 的這一年，系上安排很多學術演講，有幾位學者讓我印象深刻。Mark Dredze 在討論 gun control 時說的這句話讓我很難忘記：
 
 >   As a computer scientist, we should have many ways, especially cheap ways, to gain some insight to this problem and further provide more evidence for policy makers. 
 
