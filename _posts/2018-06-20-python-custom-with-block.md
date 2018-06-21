@@ -90,21 +90,26 @@ with 在 Python 是個很神奇的功能。他看似只在幫你開檔案的時�
         <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s">""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rtMsg</span> <span class="o">=</span> <span class="s">""</span>
+
     <span class="k">def</span> <span class="nf">success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s">"Success"</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rtMsg</span> <span class="o">=</span> <span class="n">msg</span>
+
     <span class="k">def</span> <span class="nf">fail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s">"Failed"</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="nb">type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rtMsg</span> <span class="o">=</span> <span class="n">msg</span>
+
     <span class="k">def</span> <span class="nf">teapot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s">"Dunno"</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">418</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rtMsg</span> <span class="o">=</span> <span class="s">"What do you want from a teapot?!"</span>
+
     <span class="k">def</span> <span class="nf">intError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s">"Internal Error"</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">500</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rtMsg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_send</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c"># do actual returning</span>
         <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rtMsg</span><span class="p">)</span>
@@ -159,6 +164,7 @@ with 在 Python 是個很神奇的功能。他看似只在幫你開檔案的時�
 8</pre></td><td class="code"><pre><span class="k">with</span> <span class="n">apiWrapper</span><span class="p">()</span> <span class="k">as</span> <span class="n">ctl</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"do things"</span><span class="p">)</span>
     <span class="n">ctl</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s">"good"</span><span class="p">)</span>
+    
 <span class="c"># Output:</span>
 <span class="c"># &gt;&gt; I'm checking things :))</span>
 <span class="c"># &gt;&gt; do things</span>
